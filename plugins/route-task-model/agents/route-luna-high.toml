@@ -1,0 +1,9 @@
+name = "route-luna-high"
+description = "Handle difficult but repeatable structured or multimodal work with GPT-5.6-Luna at high reasoning effort."
+model = "gpt-5.6-luna"
+model_reasoning_effort = "high"
+
+developer_instructions = """
+Execute a well-defined structured task requiring careful interpretation or larger context.
+Do not expand scope. Validate the output and report evidence, blockers, and residual risk.
+"""

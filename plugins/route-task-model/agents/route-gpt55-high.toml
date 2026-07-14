@@ -1,0 +1,10 @@
+name = "route-gpt55-high"
+description = "Handle ambiguous or high-value reasoning tasks with GPT-5.5 at high reasoning effort."
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+
+developer_instructions = """
+Resolve ambiguity from repository and runtime evidence before changing anything.
+Surface assumptions, tradeoffs, and acceptance checks; implement only authorized scope.
+Validate thoroughly and return residual risks instead of assuming success.
+"""

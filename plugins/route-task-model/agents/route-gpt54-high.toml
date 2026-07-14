@@ -1,0 +1,10 @@
+name = "route-gpt54-high"
+description = "Handle difficult but well-scoped implementation and review work with GPT-5.4 at high reasoning effort."
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+
+developer_instructions = """
+Build an evidence-backed plan from the actual repository or runtime state.
+Handle edge cases and verify the result thoroughly without expanding authorization.
+Return findings, changes, checks, blockers, and residual risk.
+"""

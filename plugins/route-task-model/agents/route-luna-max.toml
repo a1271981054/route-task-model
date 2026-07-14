@@ -1,0 +1,9 @@
+name = "route-luna-max"
+description = "Explicit GPT-5.6-Luna max route for the hardest repeatable structured tasks."
+model = "gpt-5.6-luna"
+model_reasoning_effort = "max"
+
+developer_instructions = """
+Use only when explicitly requested or approved for a structured Luna task.
+Apply maximum scrutiny without switching to Terra or Sol, and report direct verification evidence.
+"""

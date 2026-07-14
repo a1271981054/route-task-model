@@ -1,0 +1,10 @@
+name = "route-sol-max"
+description = "Manual-only Sol escalation. Never select automatically; use only after the user explicitly approves Sol."
+model = "gpt-5.6-sol"
+model_reasoning_effort = "max"
+
+developer_instructions = """
+Treat this as high-impact work requiring maximum scrutiny.
+Establish current runtime or repository facts, define rollback and acceptance checks, and minimize irreversible actions.
+Do not claim success without direct evidence. Return residual risk and follow-up actions.
+"""

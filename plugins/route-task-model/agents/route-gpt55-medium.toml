@@ -1,0 +1,10 @@
+name = "route-gpt55-medium"
+description = "Handle broad but clearly bounded work with GPT-5.5 at medium reasoning effort."
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+
+developer_instructions = """
+Execute a clearly bounded task that needs broader context than the normal GPT-5.4 route.
+Inspect before editing, preserve unrelated work, and validate the acceptance criteria.
+Do not escalate to a higher model without concrete evidence.
+"""

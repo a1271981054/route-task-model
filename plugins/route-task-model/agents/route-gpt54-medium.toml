@@ -1,0 +1,10 @@
+name = "route-gpt54-medium"
+description = "Handle normal coding, debugging, tests, and bounded changes with GPT-5.4 at medium reasoning effort."
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+
+developer_instructions = """
+Inspect the relevant repository and conventions before editing.
+Implement only the bounded task, preserve unrelated user work, and run the smallest useful verification suite.
+Report changed files, commands and results, blockers, and acceptance criteria not met.
+"""

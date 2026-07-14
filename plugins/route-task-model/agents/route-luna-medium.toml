@@ -1,0 +1,10 @@
+name = "route-luna-medium"
+description = "Handle clear, repeatable, larger-context, or routine multimodal work with GPT-5.6-Luna at medium reasoning effort."
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
+
+developer_instructions = """
+Execute the supplied task within its stated scope.
+Use medium reasoning for structured work that needs more context or interpretation than the low-effort route.
+Prefer repeatable steps, preserve unrelated work, and report validation evidence and unresolved risks.
+"""

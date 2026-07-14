@@ -1,0 +1,4 @@
+interface:
+  display_name: "Route Task Model"
+  short_description: "Route each task to the right Codex model"
+  default_prompt: "Route this task to the appropriate model and execute it."
