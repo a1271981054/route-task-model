@@ -15,6 +15,8 @@ Terra 只用于同时满足多个“大范围、工具密集型”信号的任�
 从 GitHub 克隆后，在仓库根目录执行：
 
 ```bash
+codex plugin marketplace add a1271981054/route-task-model --ref main
+codex plugin add route-task-model@route-task-model
 python3 plugins/route-task-model/scripts/install_agents.py
 ```
 

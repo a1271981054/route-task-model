@@ -1,7 +1,7 @@
 {
-  "name": "personal",
+  "name": "route-task-model",
   "interface": {
-    "displayName": "Personal"
+    "displayName": "Route Task Model"
   },
   "plugins": [
     {
