@@ -31,14 +31,15 @@ Evaluate:
 - security, privacy, compliance, or irreversible-operation risk;
 - whether the user explicitly selected a model or asked to stay in the current session.
 
-Choose the lowest suitable route. Prefer Spark, 5.4, 5.5, and 5.6-Luna. Terra
-is available on the automatic path only for unusually broad, tool-heavy work;
-Sol is never automatic.
+Use the aggressive profile by default: keep Spark for trivial work, but make
+GPT-5.5 the normal route for implementation and tool use. Prefer Spark, 5.4,
+5.5, and 5.6-Luna. Terra is available on the automatic path only for unusually
+broad, tool-heavy work; Sol is never automatic.
 
 After choosing, emit exactly one concise Chinese status line before execution:
 
 ```text
-[Route] 当前任务：常规开发｜模型：GPT-5.4｜推理：中等｜执行方式：委派 Agent
+[Route] 当前任务：常规开发｜模型：GPT-5.5｜推理：中等｜执行方式：委派 Agent
 ```
 
 For direct work use `执行方式：当前会话`; for Terra or an approved Sol
@@ -51,23 +52,25 @@ Use these display names: `GPT-5.3 Spark`, `GPT-5.4`, `GPT-5.5`,
 
 | Route | Default model and effort | Use for | Action |
 | --- | --- | --- | --- |
-| L0 | Spark `low` or `medium` | Simple explanation, summary, lookup, small text edit, or read-only answer | Handle directly in the current Spark session |
-| L1 | 5.4 `medium` | Clear, repeatable extraction, classification, transformation, or bounded text/image task | Delegate to `route-gpt54-medium` |
-| L1+ | 5.6-Luna `low` or `medium` | Clear, repeatable work needing larger context, stronger structured output, or routine multimodal handling | Delegate to `route-luna` or `route-luna-medium` |
-| L2 | 5.4 `medium` | Normal coding, debugging, tests, and bounded multi-file changes | Delegate to `route-gpt54-medium` |
-| L2+ | 5.4 `high` or 5.5 `medium` | Difficult but well-scoped implementation or review | Delegate to `route-gpt54-high` or `route-gpt55-medium` |
-| L3 | 5.5 `high` or `xhigh` | Ambiguous, broad, or high-value reasoning that is not yet a large tool-heavy execution | Delegate to `route-gpt55-high` |
-| L4 | 5.6-Terra `xhigh` | Automatic only when at least two broad-execution signals are present | Delegate to `route-terra-xhigh` |
-| L5 | 5.6-Sol `max` | Never automatic; only when the user explicitly requests Sol or approves a specific Sol escalation | Delegate to `route-sol-max` only after approval |
+| L0 | Spark `low` or `medium` | 仅限简单解释、摘要、查找、小文本修改和只读回答 | 在当前 Spark 会话直接处理 |
+| L1 | 5.4 `medium` | 明确、可重复、范围很小的提取、分类、转换或单文件任务 | 委派给 `route-gpt54-medium` |
+| L1+ | 5.6-Luna `low` 或 `medium` | 需要更大上下文、结构化输出或常规多模态处理的明确任务 | 委派给 `route-luna` 或 `route-luna-medium` |
+| L2 | 5.5 `medium` | 默认用于任何编码、调试、测试、工具调用和多文件修改 | 委派给 `route-gpt55-medium` |
+| L2+ | 5.5 `high` | 有歧义、边界条件多、需要多步验证的实现或审查 | 委派给 `route-gpt55-high` |
+| L3 | 5.6-Luna `high` | 大型结构化、多模态或上下文密集型任务 | 委派给 `route-luna-high` |
+| L4 | 5.6-Terra `xhigh` | 仅在同时满足至少两个大范围执行信号时自动使用 | 委派给 `route-terra-xhigh` |
+| L5 | 5.6-Sol `max` | 永不自动使用；仅在用户明确请求或批准具体 Sol 升级后使用 | 获得批准后才委派给 `route-sol-max` |
 
 Reasoning effort is part of the route, not an afterthought. Use `low` for
-deterministic work, `medium` for ordinary reasoning, `high` for difficult
-analysis, `xhigh` only for unusually broad tool-heavy work, and `max` only for
-the L5 escalation above. Do not raise effort just because the task is long.
+deterministic work, `medium` for ordinary reasoning (with GPT-5.5 as the
+aggressive default for development), `high` for difficult analysis, `xhigh`
+only for unusually broad tool-heavy work, and `max` only for the L5 escalation
+above. Do not raise effort just because the task is long.
 
 Apply these overrides:
 
-- Any image or other non-text input cannot use Spark; choose at least L1.
+- Any image or other non-text input cannot use Spark; choose at least L1, and
+  use Luna when the task requires multimodal comparison or structured output.
 - Production, security, financial, permission, or irreversible changes do not automatically choose Terra or Sol; use GPT-5.5 high and surface the risk.
 - An explicit user-selected model or reasoning effort always overrides this matrix.
 - Choose L4 only when at least two of these are true: three or more independent
@@ -77,7 +80,8 @@ Apply these overrides:
 - Never infer permission to use Sol from a high-risk task. Ask for approval if
   Sol would materially help, and otherwise continue with GPT-5.5.
 - If confidence is low, move up one route only within the automatic ladder; do
-  not jump to Terra or Sol because of uncertainty.
+  not jump to Terra or Sol because of uncertainty. For ordinary development,
+  prefer GPT-5.5 over GPT-5.4 unless the task is clearly small and deterministic.
 - An explicit user model choice overrides automatic routing.
 - Keep user-requested scope and permission policy unchanged when delegating.
 
@@ -87,7 +91,7 @@ or "complex" do not constitute Sol approval.
 
 ## Delegate safely
 
-For L1-L3, use the `spawn_agent` tool with the exact custom agent name. Pass a
+For L1-L4, use the `spawn_agent` tool with the exact custom agent name. Pass a
 compact handoff containing:
 
 ```text
